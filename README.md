@@ -22,13 +22,13 @@ To get your development environment running locally, follow these steps to start
 2. Install the necessary boilerplate dependencies.
 
    ```
-   npm install
+   pnpm install
    ```
 
 3. Boot up the local API development server.
 
    ```
-   npm run start
+   pnpm start
    ```
 
 4. The backend will now be listening for requests (defaulting to port 3000).
@@ -41,12 +41,12 @@ To get your development environment running locally, follow these steps to start
    ```
 2. Install the required client dependencies.
    ```
-   npm install
+   pnpm install
    ```
 3. Launch the Vite local development server.
 
    ```
-   npm run dev
+   pnpm dev
    ```
 
 4. The frontend interface will be available at the local URL provided in your terminal console (typically http://localhost:5173).
