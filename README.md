@@ -21,40 +21,44 @@ To get your development environment running locally, follow these steps to start
 
 ### 1. Setting Up the Backend (Express)
 
-1. Navigate to the `backend` directory.
+```bash
+# Clone the repository
+   git clone <repository-url>
 
-   ```
+# Navigate to the `backend` directory.
    cd backend
-   ```
 
-2. Install the necessary boilerplate dependencies.
-
-   ```
+# Install the necessary dependencies.
    pnpm install
-   ```
 
-3. Boot up the local API development server.
+# Set up environment variables
+   cp env.example .env
+# Edit .env with your configuration
 
-   ```
+# Run database migration.
+   pnpm run migrate
+
+# Boot up the local API development server.
    pnpm run start
-   ```
+```
 
-4. The backend will now be listening for requests (defaulting to port 5000).
+The backend will now be listening for requests (defaulting to port 5000).
 
 ### 2. Setting Up the Frontend (Next)
 
-1. Open a new terminal window and navigate to the `frontend` directory.
-   ```
+```bash
+# Open a new terminal window and navigate to the `frontend` directory.
    cd frontend
-   ```
-2. Install the required client dependencies.
-   ```
+
+# Install the required client dependencies.
    pnpm install
-   ```
-3. Launch the Next local development server.
 
-   ```
+# Set up environment variables
+   cp env.example .env
+# Edit .env with your configuration
+
+# Launch the Next local development server.
    pnpm run dev
-   ```
+```
 
-4. The frontend interface will be available at the local URL provided in your terminal console (typically http://localhost:3000).
+The frontend interface will be available at the local URL provided in your terminal console (typically http://localhost:3000).
