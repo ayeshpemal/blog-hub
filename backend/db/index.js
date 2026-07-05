@@ -2,8 +2,8 @@ const { Pool } = require("pg");
 
 const dbConfig = {
   user: process.env.POSTGRES_USER || "postgres",
-  host: "localhost",
-  password: process.env.POSTGRES_PW || "1234",
+  host: process.env.POSTGRES_HOST || "localhost",
+  password: process.env.POSTGRES_PASSWORD || "1234",
   port: 5432,
 };
 

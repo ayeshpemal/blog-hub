@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: blog-hub-migration-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: migration
+        # Uses your fresh backend docker image
+        image: 816069164210.dkr.ecr.ap-southeast-1.amazonaws.com/blog-hub-backend:latest
+        command: ["node", "db/migrate.js"] # Executes your migration script!
+        env:
+        - name: PORT
+          value: "5000"
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_HOST
+        
+      restartPolicy: Never
+  backoffLimit: 2

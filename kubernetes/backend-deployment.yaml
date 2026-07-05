@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: blog-hub-backend
+spec:
+  replicas: 2 # K8s will automatically keep 2 instances of your backend running for safety!
+  selector:
+    matchLabels:
+      app: blog-hub-backend
+  template:
+    metadata:
+      labels:
+        app: blog-hub-backend
+    spec:
+      containers:
+      - name: backend
+        image: ayeshapemal/blog-hub-backend:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: PORT
+          value: "5000"
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_HOST
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: blog-hub-backend
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
